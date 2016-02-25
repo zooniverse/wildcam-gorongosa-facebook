@@ -1,4 +1,4 @@
-# WildCam Gorongosa
+# WildCam Gorongosa - Facebook
 
 Built using:
 
