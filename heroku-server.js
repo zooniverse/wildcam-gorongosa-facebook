@@ -1,6 +1,8 @@
 // Server file for running on Heroku. Probably won't be used in production, but
 // simplifies the dev / testing process.
 
+console.log('Running Heroku server...');
+
 var express = require('express');
 var morgan = require('morgan');
 
