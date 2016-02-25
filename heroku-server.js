@@ -14,7 +14,7 @@ var app = express();
 
 app.use(morgan('dev'));
 
-app.use('/', express.static('/build'));
+app.use('/', express.static('./public/build'));
 
 app.listen(PORT, function () {
     console.log('Running on http://localhost:' + PORT);
