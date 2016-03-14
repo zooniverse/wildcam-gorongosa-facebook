@@ -63,10 +63,6 @@ module.exports = React.createClass
           <a className="main-header-link" href="https://www.zooniverse.org/projects/zooniverse/wildcam-gorongosa/talk" target="_blank"><Translate content="mainHeader.links.talk" /></a>
           <a className="main-header-link" href="http://blog.wildcamgorongosa.org" target="_blank"><Translate content="mainHeader.links.blog" /></a>
         </div>
-        {if @props.user
-          <AccountBar user={@props.user} />
-        else
-          <LoginBar project={@props.project} />}
       </nav>
       <span ref="closeButtonTitle" className="close-button-title"><Translate content="accountMenu.close"/></span>
       <button ref="mobileMenuButton" className="mobile-menu-button" type="button" onClick={@toggleMenu}>
