@@ -5,12 +5,15 @@
     <title>Wildcam Gorongosa</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,700" />
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,700" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <!-- inject:css -->
     <!-- endinject -->
   </head>
   <body>
+
+    <div id="app"></div>
+
     <!-- Google Tag Manager -->
     <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-WDW6V4"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -20,8 +23,10 @@
     '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-WDW6V4');</script>
 
-    <div id="app"></div>
+    <script src="https://cdn.polyfill.io/v2/polyfill.js?unknown=polyfill&amp;features=default,es6,Promise,fetch,Object.assign&amp;flags=gated"></script>
+
+    <script src="./app.js"></script>
+
   </body>
-  <script src="//cdn.polyfill.io/v2/polyfill.js?unknown=polyfill&amp;features=default,es6,Promise,fetch,Object.assign&amp;flags=gated"></script>
-  <script src="./app.js"></script>
+
 </html>
