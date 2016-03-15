@@ -13,7 +13,8 @@ module.exports = React.createClass
       method: 'share_open_graph'
       action_type: 'og.shares'
       action_properties: JSON.stringify
-        'og:image': @props.subject.locations[0]['image/jpeg']
+        object:
+          'og:image': @props.subject.locations[0]['image/jpeg']
 
   render: ->
     task = @props.workflow.tasks[@props.workflow.first_task]
