@@ -15,6 +15,11 @@ module.exports = React.createClass
       action_properties: JSON.stringify
         object:
           'og:image': @props.subject.locations[0]['image/jpeg']
+          'og:title': 'I found this on Wildcam Gorongosa'
+          'og:description': 'I\'m classifying things in Africa and it\'s totes awesome'
+          'og:site_name': 'Wildcam Gorongosa'
+          'og:url': 'https://apps.facebook.com/wildcamgorongosatest'
+          'fb:app_id': '537314539773777'
 
   render: ->
     task = @props.workflow.tasks[@props.workflow.first_task]
