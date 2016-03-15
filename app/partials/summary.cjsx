@@ -7,6 +7,14 @@ module.exports = React.createClass
   displayName: 'Summary'
   mixins: [Reflux.connect(ProjectStore, 'projectData')]
 
+  onClickShare: ->
+    console.log 'SHARE'
+    FB.ui
+      method: 'share_open_graph'
+      action_type: 'og.shares'
+      action_properties: JSON.stringify
+        'og:image': @props.subject.locations[0]['image/jpeg']
+
   render: ->
     task = @props.workflow.tasks[@props.workflow.first_task]
     <div className="task-summary">
@@ -35,6 +43,12 @@ module.exports = React.createClass
         }</ul>
       </div>
       <div className="task-summary-call-to-action">
+        <p className="call-to-action">
+          Want to share this image on your News Feed?
+        </p>
+        <button className="discuss-link" onClick={@onClickShare}>
+          Share this image
+        </button>
         <p className="call-to-action">
           Want to discuss this with other volunteers?
         </p>

@@ -22,10 +22,6 @@ module.exports = React.createClass
         xfbml: true
         version: 'v2.5'
 
-      FB.ui
-        method: 'share'
-        href: 'https://developers.facebook.com/docs/'
-
   render: ->
     user = unless @state.userData is null then @state.userData?.user else null
 
