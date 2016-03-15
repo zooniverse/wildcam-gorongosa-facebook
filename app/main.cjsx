@@ -14,6 +14,18 @@ module.exports = React.createClass
   getIntitalState:
     project: null
 
+  componentDidMount: ->
+    window.fbAsyncInit = ->
+      FB.init
+        appId: '537314539773777'
+        cookie: true
+        xfbml: true
+        version: 'v2.5'
+
+      FB.ui
+        method: 'share'
+        href: 'https://developers.facebook.com/docs/'
+
   render: ->
     user = unless @state.userData is null then @state.userData?.user else null
 
