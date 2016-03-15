@@ -26,11 +26,15 @@ app.post('/', function(req, res, next) {
     res.sendFile(__dirname + '/public/build/index.html');
 });
 
-var options = {
-    key: fs.readFileSync('./cert/key.pem'),
-    cert: fs.readFileSync('./cert/cert.pem'),
-};
+// var options = {
+//     key: fs.readFileSync('./cert/key.pem'),
+//     cert: fs.readFileSync('./cert/cert.pem'),
+// };
 
-https.createServer(options, app).listen(PORT, HOST, null, function() {
-    console.log('Server listening on port %d in %s mode', this.address().port, app.settings.env);
+// https.createServer(options, app).listen(PORT, HOST, null, function() {
+//     console.log('Server listening on port %d in %s mode', this.address().port, app.settings.env);
+// });
+
+app.listen(PORT, function () {
+    console.log('Running on http://localhost:' + PORT);
 });
