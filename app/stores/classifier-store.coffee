@@ -10,7 +10,7 @@ module.exports = Reflux.createStore
 
   data:
     showingSummary: false
-    shownTutorial: false
+    shownTutorial: localStorage.getItem 'shownTutorial' or false
     tutorialIsOpen: false
     choiceInProgress: false
 

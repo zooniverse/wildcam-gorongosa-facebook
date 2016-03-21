@@ -42,6 +42,9 @@ SlideTutorial = React.createClass
     slideTutorial = React.findDOMNode(@refs.slideTutorial)
     slideTutorial.classList.add 'fade-out' #css fade-out animation cause js animations aren't great in react yet.
 
+    # Login is disabled, so we store the tutorial shown status in localStorage
+    localStorage.setItem 'shownTutorial', true
+
     #Wait for animation
     setTimeout ( =>
       slideTutorial.classList.remove 'fade-out'
