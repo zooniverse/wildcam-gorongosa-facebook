@@ -28,6 +28,7 @@ module.exports = React.createClass
       plural = annotation.answers["HWMN"] > 1
       species = task.choices[annotation.choice].label
       species = species.replace /\s*\(.*?\)\s*/g, ''
+      species = species.toLowerCase
       message += 
         if plural then 'some '
         else if isVowel species.charAt 0
@@ -37,8 +38,8 @@ module.exports = React.createClass
       message += 
         if plural
           switch species
-            when "Buffalo" then "#{species}"
-            when "Hippopotamus" then "#{species}es"
+            when "buffalo" then "#{species}"
+            when "hippopotamus" then "#{species}es"
             else 
               "#{species}s"
         else
@@ -55,8 +56,8 @@ module.exports = React.createClass
       action_properties: JSON.stringify
         object:
           'og:image': @props.subject.locations[0]['image/jpeg']
-          'og:title': 'I found this on Wildcam Gorongosa'
-          'og:description': message
+          'og:title': message
+          'og:description': "I'm helping scientists to classify animals found in Gorongosa National Park in Mozambique."
           'og:site_name': 'Wildcam Gorongosa'
           'og:url': fbConfig['wildcamg-heroku'].url
           'fb:app_id': fbConfig['wildcamg-heroku'].appId
