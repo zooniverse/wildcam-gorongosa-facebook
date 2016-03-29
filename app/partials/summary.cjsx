@@ -12,7 +12,7 @@ fbConfig =
     url: 'https://apps.facebook.com/wildcamg-heroku/'
 
 isVowel = letter ->
-  ['a', 'e', 'i', 'o', 'u'].indexOf(letter.toLowerCase()) !== -1
+  ['a', 'e', 'i', 'o', 'u'].indexOf(letter.toLowerCase()) isnt -1
 
 
 module.exports = React.createClass
@@ -27,10 +27,11 @@ module.exports = React.createClass
     if annotation and annotation.choice isnt 'NTHNGHR'
       plural = annotation.answers["HWMN"] > 1
       species = task.choices[annotation.choice].label
-      message += if plural then 'some ' 
+      message += 
+        if plural then 'some '
         else if isVowel species.charAt 0
           'an '
-        else 'a'
+        else 'a '
       message += 
         if plural
           switch species
