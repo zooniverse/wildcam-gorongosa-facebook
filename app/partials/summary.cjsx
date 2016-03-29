@@ -17,14 +17,27 @@ module.exports = React.createClass
 
   onClickShare: ->
     task = @props.workflow.tasks[@props.workflow.first_task]
-    message = 'I found an interesting image on Wildcam Gorongosa'
-    # if @props.annotations and @props.annotations[0].choice isnt 'NTHNGHR'
-    #   message = 'I found '
-    #   if @props.annotations[0].answers["HWMN"] > 1
-    #     message += 'some '
-    #   else
-    #     message += 'a '
+    annotation = @props.annotations[0]
 
+    message = 'I found '
+    if annotation and annotation.choice isnt 'NTHNGHR'
+      plural = annotation.answers["HWMN"] > 1
+      species = task.choices[annotation.choice].label
+      message += if plural then 'some ' else 'a '
+      message += 
+        if annotation.answers["HWMN"] > 1
+          switch species
+            when "Buffalo" then "#{species}"
+            when "Hippopotamus" then "#{species}es"
+            when "Lion (male)", "Lion (female)", "Lion (cub)" then "Lions"
+            else 
+              "#{species}s"
+        else
+          species
+    else
+      message += 'something interesting on Wildcam Gorongosa'
+
+    console.log message
 
     FB.ui
       method: 'share_open_graph'
