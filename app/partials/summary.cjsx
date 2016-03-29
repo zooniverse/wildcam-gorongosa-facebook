@@ -3,7 +3,7 @@ Reflux = require 'reflux'
 
 ProjectStore = require '../stores/project-store'
 
-fbConfig:
+fbConfig =
   'wildcamg-local':
     appId: '541886729316558'
     url: 'https://apps.facebook.com/wildcamg-local/'
