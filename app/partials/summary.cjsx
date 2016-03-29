@@ -3,12 +3,29 @@ Reflux = require 'reflux'
 
 ProjectStore = require '../stores/project-store'
 
+fbConfig:
+  'wildcamg-local':
+    appId: '541886729316558'
+    url: 'https://apps.facebook.com/wildcamg-local/'
+  'wildcamg-heroku':
+    appId: '537314539773777'
+    url: 'https://apps.facebook.com/wildcamg-heroku/'
+
 module.exports = React.createClass
   displayName: 'Summary'
   mixins: [Reflux.connect(ProjectStore, 'projectData')]
 
   onClickShare: ->
-    console.log 'SHARE'
+    task = @props.workflow.tasks[@props.workflow.first_task]
+    message = 'I found an interesting image on Wildcam Gorongosa'
+    # if @props.annotations and @props.annotations[0].choice isnt 'NTHNGHR'
+    #   message = 'I found '
+    #   if @props.annotations[0].answers["HWMN"] > 1
+    #     message += 'some '
+    #   else
+    #     message += 'a '
+
+
     FB.ui
       method: 'share_open_graph'
       action_type: 'og.shares'
@@ -16,10 +33,10 @@ module.exports = React.createClass
         object:
           'og:image': @props.subject.locations[0]['image/jpeg']
           'og:title': 'I found this on Wildcam Gorongosa'
-          'og:description': 'I\'m classifying things in Africa and it\'s totes awesome'
+          'og:description': message
           'og:site_name': 'Wildcam Gorongosa'
-          'og:url': 'https://apps.facebook.com/wildcamgorongosatest'
-          'fb:app_id': '537314539773777'
+          'og:url': fbConfig['wildcamg-heroku'].url
+          'fb:app_id': fbConfig['wildcamg-heroku'].appId
 
   render: ->
     task = @props.workflow.tasks[@props.workflow.first_task]

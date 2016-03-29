@@ -34,7 +34,6 @@ module.exports = React.createClass
   componentDidMount: ->
     # Check specifically for null because setting prop as null if no user is returned. Avoids loading tutorial for the split second the props are undefined.
     # For logged in users with zero classifications, they will have null userPrefs
-    console.log @state.shownTutorial
     if @state.shownTutorial isnt true
       classifierActions.displayTutorial()
 
