@@ -11,7 +11,7 @@ fbConfig =
     appId: '537314539773777'
     url: 'https://apps.facebook.com/wildcamg-heroku/'
 
-isVowel = letter ->
+isVowel = (letter) ->
   ['a', 'e', 'i', 'o', 'u'].indexOf(letter.toLowerCase()) isnt -1
 
 
@@ -30,6 +30,7 @@ module.exports = React.createClass
       message += 
         if plural then 'some '
         else if isVowel species.charAt 0
+          console.log isVowel species.charAt 0
           'an '
         else 'a '
       message += 
