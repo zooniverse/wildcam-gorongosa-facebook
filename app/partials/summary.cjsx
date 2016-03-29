@@ -11,6 +11,10 @@ fbConfig =
     appId: '537314539773777'
     url: 'https://apps.facebook.com/wildcamg-heroku/'
 
+isVowel = letter ->
+  ['a', 'e', 'i', 'o', 'u'].indexOf(letter.toLowerCase()) !== -1
+
+
 module.exports = React.createClass
   displayName: 'Summary'
   mixins: [Reflux.connect(ProjectStore, 'projectData')]
@@ -23,9 +27,12 @@ module.exports = React.createClass
     if annotation and annotation.choice isnt 'NTHNGHR'
       plural = annotation.answers["HWMN"] > 1
       species = task.choices[annotation.choice].label
-      message += if plural then 'some ' else 'a '
+      message += if plural then 'some ' 
+        else if isVowel species.charAt 0
+          'an '
+        else 'a'
       message += 
-        if annotation.answers["HWMN"] > 1
+        if plural
           switch species
             when "Buffalo" then "#{species}"
             when "Hippopotamus" then "#{species}es"
@@ -34,8 +41,9 @@ module.exports = React.createClass
               "#{species}s"
         else
           species
+      message += ' on Wildcam Gorongosa!'
     else
-      message += 'something interesting on Wildcam Gorongosa'
+      message += 'something interesting on Wildcam Gorongosa!'
 
     console.log message
 
