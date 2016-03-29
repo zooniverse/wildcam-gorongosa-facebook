@@ -27,6 +27,7 @@ module.exports = React.createClass
     if annotation and annotation.choice isnt 'NTHNGHR'
       plural = annotation.answers["HWMN"] > 1
       species = task.choices[annotation.choice].label
+      species = species.replace /\s*\(.*?\)\s*/g, ''
       message += 
         if plural then 'some '
         else if isVowel species.charAt 0
@@ -38,7 +39,6 @@ module.exports = React.createClass
           switch species
             when "Buffalo" then "#{species}"
             when "Hippopotamus" then "#{species}es"
-            when "Lion (male)", "Lion (female)", "Lion (cub)" then "Lions"
             else 
               "#{species}s"
         else
