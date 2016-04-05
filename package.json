@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "start": "gulp",
+    "build": "gulp clean && gulp build",
     "deploy-to-staging": "gulp clean && gulp build && publisssh ./public/build demo.zooniverse.org/wildcam-gorongosa && gulp clean",
     "deploy-to-production": "gulp clean && gulp build && publisssh ./public/build zooniverse-static/www.wildcamgorongosa.org && gulp clean"
   },
