@@ -31,9 +31,7 @@ module.exports = React.createClass
       species = species.toLowerCase
       message += 
         if plural then 'some '
-        else if isVowel species.charAt 0
-          console.log isVowel species.charAt 0
-          'an '
+        else if isVowel species.charAt 0 then 'an '
         else 'a '
       message += 
         if plural
