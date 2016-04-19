@@ -25,6 +25,7 @@ module.exports = Reflux.createStore
     @data = api.type('classifications').create
       metadata:
         workflow_version: workflowStore.data.version
+        facebook: true
         started_at: (new Date).toISOString()
         user_agent: navigator.userAgent
         user_language: counterpart.getLocale()
