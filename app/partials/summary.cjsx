@@ -29,16 +29,17 @@ module.exports = React.createClass
       species = task.choices[annotation.choice].label
       species = species.replace /\s*\(.*?\)\s*/g, ''
       species = species.toLowerCase
-      message += 
+      console.log('species value', species)
+      message +=
         if plural then 'some '
         else if isVowel species.charAt 0 then 'an '
         else 'a '
-      message += 
+      message +=
         if plural
           switch species
             when "buffalo" then "#{species}"
             when "hippopotamus" then "#{species}es"
-            else 
+            else
               "#{species}s"
         else
           species
@@ -68,7 +69,7 @@ module.exports = React.createClass
         <ul className="task-summary-annotations-list">
           {for annotation, i in @props.annotations
             species = task.choices[annotation.choice].label
-            plural = 
+            plural =
               if annotation.answers["HWMN"] > 1
                 switch species
                   when "Buffalo" then "#{species}"
@@ -78,7 +79,7 @@ module.exports = React.createClass
                   when "Lion (female)"
                     "Lions (female)"
                   when "Lion (cub)" then "Lions (cub)"
-                  else 
+                  else
                     "#{species}s"
               else
                 species
