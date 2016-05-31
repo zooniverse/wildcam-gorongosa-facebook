@@ -28,7 +28,7 @@ module.exports = React.createClass
       plural = annotation.answers["HWMN"] > 1
       species = task.choices[annotation.choice].label
       species = species.replace /\s*\(.*?\)\s*/g, ''
-      species = species.toLowerCase
+      species = species.toLowerCase()
       console.log('species value', species)
       message +=
         if plural then 'some '
