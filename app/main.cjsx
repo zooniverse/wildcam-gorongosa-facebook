@@ -24,8 +24,8 @@ module.exports = React.createClass
         xfbml: true
         version: 'v2.5'
 
-      FB.AppEvents.logEvent 'VISITED_APP'
-      console.log 'should be logging something...'
+      # FB.AppEvents.logEvent('VISITED_APP')
+      console.log 'should be logging something...', FB.AppEvents.logEvent('VISITED_APP')
 
   render: ->
     user = unless @state.userData is null then @state.userData?.user else null
