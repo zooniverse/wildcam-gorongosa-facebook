@@ -3,11 +3,11 @@
 var path = require('path'),
     del = require('del'),
     gulp = require('gulp'),
-    gutil = require("gulp-util"),
+    gutil = require('gulp-util'),
     watch = require('gulp-watch'),
     stylus = require('gulp-stylus'),
     changed = require('gulp-changed'),
-    notify = require("gulp-notify"),
+    notify = require('gulp-notify'),
     nib = require('nib'),
     imagemin = require('gulp-imagemin'),
     rev = require('gulp-rev'),
@@ -16,24 +16,24 @@ var path = require('path'),
     runSequence = require('run-sequence'),
     express = require('express'),
     webpack = require('webpack'),
-    webpackConfig = require("./webpack.config.js"),
+    webpackConfig = require('./webpack.config.js'),
     webpackProductionConfig = require('./webpack-production.config.js');
 
 var dest = './public/build';
 
 var config = {
   js: {
-    src: "./app/main.cjsx",
+    src: './app/main.cjsx',
     dest: dest
   },
   stylus: {
     files: './css/**/*',
-    src: "./css/main.styl",
+    src: './css/main.styl',
     out: 'main.css',
     dest: dest
   },
   html: {
-    src: "./public/index.html",
+    src: './public/index.html',
     dest: dest
   },
   clean: {
@@ -47,15 +47,15 @@ var config = {
   server: {
     port: 3434
   }
-}
+};
 
 // error handing function, pass to on 'error'
 var handleErrors = function() {
   var args = Array.prototype.slice.call(arguments);
 
   notify.onError({
-    title: "Compile Error",
-    message: "<%= error.message %>"
+    title: 'Compile Error',
+    message: '<%= error.message %>'
   }).apply(this, args);
 
   this.emit('end'); // Keep gulp from hanging on this task
@@ -63,22 +63,22 @@ var handleErrors = function() {
 
 var execWebpack = function(config){
   webpack((config), function(err, stats) {
-    if (err) new gutil.PluginError("execWebpack", err);
+    if (err) new gutil.PluginError('execWebpack', err);
     gutil.log(stats.toString({colors: true}));
   });
-}
+};
 
 var createServer = function(port) {
-  var app = express()
-  app.use(express.static(path.resolve(dest)))
+  var app = express();
+  app.use(express.static(path.resolve(dest)));
   app.listen(port, function(){
-    gutil.log("Server started on ", port);
-  })
-}
+    gutil.log('Server started on ', port);
+  });
+};
 
 // remove the build files
 gulp.task('clean', function () {
-    del([dest])
+    del([dest]);
 });
 
 // copy / minify images
@@ -119,18 +119,18 @@ gulp.task('stylus:build', function() {
 gulp.task('webpack', function(callback){
   execWebpack(webpackConfig);
   callback();
-})
+});
 
 // compile js for production build and move to build dir
-gulp.task("webpack:build", function(callback) {
+gulp.task('webpack:build', function(callback) {
   // modify some webpack config options
   var myConfig = Object.create(webpackProductionConfig);
   myConfig.plugins = myConfig.plugins.concat(
     new webpack.DefinePlugin({
-      "process.env": {
+      'process.env': {
         // This has effect on the react lib size
-        "NODE_ENV": JSON.stringify("production"),
-        "FB_ENV": JSON.stringify(process.env.FB_ENV || 'production')
+        'NODE_ENV': JSON.stringify('production'),
+        'FB_ENV': JSON.stringify(process.env.FB_ENV || 'production')
       }
     }),
     new webpack.optimize.UglifyJsPlugin()
@@ -138,8 +138,8 @@ gulp.task("webpack:build", function(callback) {
 
   // run webpack
   webpack(myConfig, function(err, stats) {
-    if(err) throw new gutil.PluginError("webpack:build", err);
-    gutil.log("[webpack:build]", stats.toString({
+    if(err) throw new gutil.PluginError('webpack:build', err);
+    gutil.log('[webpack:build]', stats.toString({
         colors: true
       })
     );
