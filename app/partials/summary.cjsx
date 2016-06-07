@@ -4,12 +4,17 @@ Reflux = require 'reflux'
 ProjectStore = require '../stores/project-store'
 
 fbConfig =
-  'wildcamg-local':
+  'local':
     appId: '541886729316558'
     url: 'https://apps.facebook.com/wildcamg-local/'
-  'wildcamg-heroku':
+  'heroku':
     appId: '537314539773777'
     url: 'https://apps.facebook.com/wildcamg-heroku/'
+  'production':
+    appId: '537314453107119'
+    url: 'https://apps.facebook.com/wildcam-gorongosa/'
+
+ENV = 'heroku'
 
 isVowel = (letter) ->
   ['a', 'e', 'i', 'o', 'u'].indexOf(letter.toLowerCase()) isnt -1
@@ -18,6 +23,8 @@ isVowel = (letter) ->
 module.exports = React.createClass
   displayName: 'Summary'
   mixins: [Reflux.connect(ProjectStore, 'projectData')]
+
+
 
   onClickShare: ->
     task = @props.workflow.tasks[@props.workflow.first_task]
@@ -57,10 +64,16 @@ module.exports = React.createClass
           'og:title': message
           'og:description': "I'm helping scientists to classify animals found in Gorongosa National Park in Mozambique."
           'og:site_name': 'Wildcam Gorongosa'
-          'og:url': fbConfig['wildcamg-heroku'].url
-          'fb:app_id': fbConfig['wildcamg-heroku'].appId
+          'og:url': fbConfig[ENV].url
+          'fb:app_id': fbConfig[ENV].appId
+
+  fireFBClassificationEvent: ->
+    params =
+      CONTENT_ID: @props.subject.id
+    FB.AppEvents.logEvent 'CLASSIFIED_SUBJECT', null, params
 
   render: ->
+    @fireFBClassificationEvent()
     task = @props.workflow.tasks[@props.workflow.first_task]
     <div className="task-summary">
       <div className="task-summary-annotations">
