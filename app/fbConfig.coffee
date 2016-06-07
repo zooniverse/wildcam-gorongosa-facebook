@@ -11,6 +11,8 @@ fbConfig =
 
 ENV = process.env.FB_ENV || 'production'
 
+console.log 'process', process.env.FB_ENV
+
 console.log 'Environment set to ', ENV, fbConfig[ENV]
 
 module.exports = fbConfig[ENV]
