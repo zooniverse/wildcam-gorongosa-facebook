@@ -25,6 +25,7 @@ module.exports = React.createClass
         version: 'v2.5'
 
       FB.AppEvents.logEvent 'VISITED_APP'
+      console.log 'should be logging something...'
 
   render: ->
     user = unless @state.userData is null then @state.userData?.user else null
