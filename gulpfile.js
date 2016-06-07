@@ -129,7 +129,8 @@ gulp.task("webpack:build", function(callback) {
     new webpack.DefinePlugin({
       "process.env": {
         // This has effect on the react lib size
-        "NODE_ENV": JSON.stringify("production")
+        "NODE_ENV": JSON.stringify("production"),
+        "FB_ENV": JSON.stringify(process.env.FB_ENV || 'production')
       }
     }),
     new webpack.optimize.UglifyJsPlugin()
