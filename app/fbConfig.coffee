@@ -9,6 +9,6 @@ fbConfig =
     appId: '537314453107119'
     url: 'https://apps.facebook.com/wildcam-gorongosa/'
 
-ENV = 'production'
+ENV = process.env.FB_ENV || 'production'
 
 module.exports = fbConfig[ENV]
