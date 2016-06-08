@@ -50,7 +50,7 @@
     "tether": "HubSpot/tether#df8cd44",
     "through2": "^2.0.0",
     "underscore": "^1.8.3",
-    "webpack": "~1.10.1"
+    "webpack": "~1.13.1"
   },
   "engine": "node 0.12.x"
 }
